@@ -1,0 +1,12 @@
+[submodule "wsocket_utils"]
+	path = wsocket_utils
+	url = https://github.com/lazytinker/wsocket_utils.git
+[submodule "ulog"]
+	path = ulog
+	url = https://github.com/lazytinker/ulog.git
+[submodule "wsocket"]
+	path = wsocket
+	url = https://github.com/lazytinker/wsocket.git
+[submodule "queue"]
+	path = queue
+	url = https://github.com/opensource-mirrors/freebsd-queue.git
