@@ -263,7 +263,7 @@ static void listener_accept_cb(EV_P_ ev_io *w, int revents)
 
     ev_io_init(&client->io, client_read_cb, WSOCKET_GET_FD(client->socket), EV_READ);
     ev_io_start(EV_A_  &client->io);
-    LOG_INFO("move client(%d ip=%s) to connections list", client->socket, client->ip);
+    LOG_INFO("move client(%d ip=%s) to clientss list", client->socket, client->ip);
     TAILQ_INSERT_TAIL(&master->clients_head, client, ENTRIES);
 }
 
