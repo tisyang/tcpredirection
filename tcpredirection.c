@@ -312,10 +312,17 @@ int main(int argc, const char *argv[])
 #ifndef _WIN32
     signal(SIGPIPE, SIG_IGN);
 #endif
-    FILE* logf = fopen("log.txt", "w");
-    if (logf) {
-        ulog_init(log_print, logf, ULOG_LV_ALL);
-        LOG_INFO("create log file '%s' OK", "log.txt");
+    {
+        time_t now = time(NULL);
+        char tim[32];
+        strftime(tim, sizeof(tim), "%y%m%d_%H%M", localtime(&now));
+        char buf[64];
+        snprintf(buf, sizeof(buf), "log.%s", tim);
+        FILE* logf = fopen(buf, "w");
+        if (logf) {
+            ulog_init(log_print, logf, ULOG_LV_ALL);
+            LOG_INFO("create log file '%s' OK", buf);
+        }
     }
 
     WSOCKET_INIT();
