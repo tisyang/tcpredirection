@@ -313,11 +313,17 @@ int main(int argc, const char *argv[])
     signal(SIGPIPE, SIG_IGN);
 #endif
     {
+        const char *name = argv[0];
+        for (const char* p = name; *p; p++) {
+            if (*p == '/' || *p == '\\') {
+                name = p + 1;
+            }
+        }
         time_t now = time(NULL);
         char tim[32];
         strftime(tim, sizeof(tim), "%y%m%d_%H%M", localtime(&now));
         char buf[64];
-        snprintf(buf, sizeof(buf), "log.%s", tim);
+        snprintf(buf, sizeof(buf), "log_%s.%s", name, tim);
         FILE* logf = fopen(buf, "w");
         if (logf) {
             ulog_init(log_print, logf, ULOG_LV_ALL);
